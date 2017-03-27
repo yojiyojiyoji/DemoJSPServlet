@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>CalenderContextListener</servlet-name>
+        <servlet-class>util.CalenderContextListener</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IncidentViewContextListener</servlet-name>
+        <servlet-class>util.IncidentViewContextListener</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageProductServlet</servlet-name>
+        <servlet-class>controller_v2.ManageProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterProductServlet</servlet-name>
+        <servlet-class>controller_v2.RegisterProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageTechnicianServlet</servlet-name>
+        <servlet-class>controller_v2.ManageTechnicianServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageCustomerServlet</servlet-name>
+        <servlet-class>controller_v2.ManageCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageIncidentServlet</servlet-name>
+        <servlet-class>controller_v2.ManageIncidentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateIncident</servlet-name>
+        <servlet-class>controller_v2.UpdateIncidentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CalenderContextListener</servlet-name>
+        <url-pattern>/CalenderContextListener</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>util.CalenderContextListener</listener-class>
+    </listener>
+    <servlet-mapping>
+        <servlet-name>IncidentViewContextListener</servlet-name>
+        <url-pattern>/IncidentViewContextListener</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>util.IncidentViewContextListener</listener-class>
+    </listener>
+    <servlet-mapping>
+        <servlet-name>ManageProductServlet</servlet-name>
+        <url-pattern>/ManageProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterProductServlet</servlet-name>
+        <url-pattern>/RegisterProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageTechnicianServlet</servlet-name>
+        <url-pattern>/ManageTechnician</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageCustomerServlet</servlet-name>
+        <url-pattern>/ManageCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageIncidentServlet</servlet-name>
+        <url-pattern>/ManageIncident</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateIncident</servlet-name>
+        <url-pattern>/UpdateIncidentServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Define two security roles -->
+    <!--
+    <security-role>
+        <description>system administrators</description>
+        <role-name>admin</role-name>
+    </security-role>
+    <security-role>
+        <description>demo user</description>
+        <role-name>demo-user</role-name>
+    </security-role>
+    -->
+
+    <!-- Restrict access to all files in the /admin folder -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+    <!--    <url-pattern>/ManageProduct</url-pattern>
+            <url-pattern>/ManageTechnician</url-pattern>
+            <url-pattern>/ManageCustomer</url-pattern>    -->
+        </web-resource-collection>
+
+        <!-- Authorize the programmer and service roles -->
+        <auth-constraint>
+            <role-name>manager-gui</role-name>
+        <!--<role-name>admin</role-name>
+            <role-name>demo-user</role-name> -->
+        </auth-constraint>
+    </security-constraint>
+
+    <!-- Use basic authentication -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+<!--    <realm-name>Admin Login</realm-name>   -->
+    </login-config>
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

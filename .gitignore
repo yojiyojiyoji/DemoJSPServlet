@@ -1,0 +1,7 @@
+build/*
+dist/*
+mysql-connector-java-5.1.29/*
+nbproject/*
+sql_script/tech_support_for_demo.sql
+web/META-INF/context.xml
+build.xml
